@@ -3,14 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ShineBorder } from "@/components/magicui/ShineBorder";
-import { Meteors } from "@/components/magicui/Meteors";
 
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-black flex flex-col items-center justify-center p-6 overflow-hidden">
-      {/* Meteor Effect */}
-      <Meteors />
-
       <ShineBorder className="max-w-2xl">
         <Card className="shadow-xl border border-purple-500/30 bg-gray-950/70 rounded-2xl text-white text-center p-1">
           <CardContent className="p-8">

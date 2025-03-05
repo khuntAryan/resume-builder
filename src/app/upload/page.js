@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -18,6 +19,7 @@ export default function UploadResume() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const [resumeData, setResumeData] = useState(null);
+  const router = useRouter(); // Initialize Next.js router
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -128,6 +130,16 @@ export default function UploadResume() {
     }
   };
 
+  const handleGetInsightClick = () => {
+    if (!resumeData) {
+      alert("⚠️ Please analyze the resume first!");
+      return;
+    }
+
+    const queryString = new URLSearchParams(resumeData).toString();
+    router.push(`/analyze?${queryString}`);
+  };
+
   const removeFile = () => {
     setSelectedFile(null);
     setFileName("");
@@ -162,6 +174,9 @@ export default function UploadResume() {
                 <strong>{key}:</strong> {value}
               </p>
             ))}
+            <Button className="mt-4 bg-green-600 hover:bg-green-700 w-full" onClick={handleGetInsightClick}>
+              Get Insight from AI
+            </Button>
           </div>
         )}
       </Card>
